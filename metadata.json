@@ -1,0 +1,6 @@
+{
+  "name": "3D Printing Dashboard",
+  "description": "Dashboard para controle de gastos com filamento e economia vs. orçamento externo em impressões 3D.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

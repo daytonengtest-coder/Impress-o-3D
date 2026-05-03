@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "PrintingRecord": {
+      "title": "Registro de Impressão",
+      "description": "Dados de uma peça impressa em 3D",
+      "type": "object",
+      "properties": {
+        "peca": { "type": "string", "description": "Nome da peça" },
+        "setor": { "type": "string", "description": "Setor solicitante" },
+        "data": { "type": "string", "description": "Data no formato DD/MM/AAAA" },
+        "qty": { "type": "number", "description": "Quantidade" },
+        "custo": { "type": "number", "description": "Custo de filamento" },
+        "orcamento": { "type": "number", "description": "Orçamento externo unitário" },
+        "saving": { "type": "number", "description": "Saving total calculado" },
+        "filamento": { "type": "number", "description": "Consumo de filamento em metros" },
+        "observacao": { "type": "string", "description": "Notas adicionais" },
+        "images": { 
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Lista de URLs das imagens (base64 ou storage URLs)"
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string", "description": "ID do usuário dono do registro" }
+      },
+      "required": ["peca", "setor", "data", "qty", "custo", "orcamento", "saving", "userId"]
+    },
+    "SectorsConfig": {
+      "title": "Configuração de Setores",
+      "description": "Lista de setores personalizados pelo usuário",
+      "type": "object",
+      "properties": {
+        "list": { 
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["list"]
+    }
+  },
+  "firestore": {
+    "/records/{recordId}": {
+      "schema": "PrintingRecord",
+      "description": "Coleção global de registros protegida por userId"
+    },
+    "/configs/sectors_{userId}": {
+      "schema": "SectorsConfig",
+      "description": "Configurações de setores por usuário"
+    }
+  }
+}
